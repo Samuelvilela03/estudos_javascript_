@@ -73,17 +73,27 @@
     <!-- código javascript personalizado  -->
     <script>
         const totaljogadores = 8
+        var contador =1
 
+        //array de jogadores(sorteio)  
+        var jogadores = [] 
 
-          
 
 
         document.getElementById('numero').innerText = totaljogadores
         document.getElementById('entrada').addEventListener('submit',(e)=>{
             
             let nomedigitado = document.getElementById('nome').value
+            if(contador <= totaljogadores ){
             document.getElementById('saida').innerText += `\n ${nomedigitado} `
+            nomedigitado = document.getElementById('nome').value = `` //limpar campo
 
+            jogadores.push(nomedigitado)
+            }else{
+
+            }
+            console.log(jogadores)
+            contador ++
             e.preventDefault()
         })
 
