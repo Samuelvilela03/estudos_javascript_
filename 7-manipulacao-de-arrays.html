@@ -36,25 +36,23 @@
                 <!-- insira os campos de formulário aqui -->
                 <form id="entrada">
                     <div class="mb-3">
-                      <label for="nome" class="form-label">Name</label>
+                      <label for="nome" class="form-label">Nome do jogador</label>
                       <input type="text"
-                        class="form-control" name="nome" id="nome" >
+                        class="form-control" name="nome" id="nome">
                     </div>
-                    <button type="submit" class="btn btn-primary">ADICIONAR</button>
-                </form>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </form>                
 
             </div>
         </div>
-
-
 
         <!-- SAÍDA  -->
         <div class="card m-5">
             <div class="card-body">
                 <!-- insira os elementos de saída aqui -->
                 <h3 class="text-center">Jogadores:</h3>
-                <p id="saida"class="text-center"></p>
-                <h1 id="sorteado" class="text-center"></h1>
+                <p id="saida" class="text-center"></p>
+                <h1 id="sorteado" class="text-center"></h1>               
             </div>
         </div>
 
@@ -72,27 +70,31 @@
 
     <!-- código javascript personalizado  -->
     <script>
-        const totaljogadores = 8
-        var contador =1
+        //variáveis e funções
+        const totalJogadores = 4
+        var contador = 1
+        //array de jogadores (para o sorteio)
+        var jogadores = []
+        
 
-        //array de jogadores(sorteio)  
-        var jogadores = [] 
+        //execuções automáticas e eventos
+        document.getElementById('numero').innerText = totalJogadores
 
+        //submit do formulário entrada
+        document.getElementById('entrada').addEventListener('submit', (e)=>{
+            //Guarda o valor digitado no campo nome
+            let nomeDigitado = document.getElementById('nome').value
 
-
-        document.getElementById('numero').innerText = totaljogadores
-        document.getElementById('entrada').addEventListener('submit',(e)=>{
-            
-            let nomedigitado = document.getElementById('nome').value
-            if(contador <= totaljogadores ){
-            document.getElementById('saida').innerText += `\n ${nomedigitado} `
-            nomedigitado = document.getElementById('nome').value = `` //limpar campo
-
-            jogadores.push(nomedigitado)
+            //Somente enquanto contador for menor que totalJogadores
+            if(contador <= totalJogadores){
+                document.getElementById('saida').innerHTML += `${nomeDigitado},&nbsp;`
+                document.getElementById('nome').value = ''
+                //preenche a array jogadores
+                jogadores.push(nomeDigitado)       
             }else{
-
+                
             }
-            console.log(jogadores)
+                        
             contador ++
             e.preventDefault()
         })
